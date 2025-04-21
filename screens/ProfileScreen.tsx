@@ -1,30 +1,41 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
+import { Linking } from 'react-native';
 import {
   View,
   Text,
   FlatList,
   TouchableOpacity,
   Image,
-  TextInput
+  TextInput,
 } from 'react-native';
 import styles from '../styles';
 
 export default function ProfileScreen({ navigation }) {
-  const [input, setInput] = React.useState('');
+  const [input, setInput] = useState('');
 
   const initialPosts = [
     { id: '1', text: 'Только что переслушал альбом Slayer — всё ещё шик!' },
-    { id: '2', text: 'Жду концерт Gojira в нашем городе! Кто идёт?' },
+    { id: '2', text: 'Жду концерт БАУ в нашем городе! Кто идёт?' },
     { id: '3', text: 'Сегодня на репетиции родился новый рифф 🤘' },
   ];
 
-  const [posts, setPosts] = React.useState(initialPosts);
+  const favoriteBands = [
+    'Slayer',
+    'BАУ',
+    'Behemoth',
+    'Motionless In White',
+    'Ghost',
+  ];
 
-  // 👇 Добавляем кнопку "Сообщения" в заголовок
+  const [posts, setPosts] = useState(initialPosts);
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <TouchableOpacity onPress={() => navigation.navigate('Messages')} style={{ marginRight: 16 }}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Messages')}
+          style={{ marginRight: 16 }}
+        >
           <Text style={{ color: '#fff', fontSize: 16 }}>💬</Text>
         </TouchableOpacity>
       ),
@@ -39,7 +50,9 @@ export default function ProfileScreen({ navigation }) {
   };
 
   const renderItem = ({ item }) => (
-    <TouchableOpacity onPress={() => navigation.navigate('PostReplies', { post: item })}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate('PostReplies', { post: item })}
+    >
       <View style={styles.postItemContainer}>
         <Text style={styles.postItem}>{item.text}</Text>
         <View style={{ flexDirection: 'row', gap: 8 }}>
@@ -64,6 +77,29 @@ export default function ProfileScreen({ navigation }) {
           <Text style={styles.profileFlag}>🇧🇷</Text>
           <Text style={styles.profileDescription}>Статус: true metal 🤘</Text>
           <Text style={styles.profileDescription}>Люблю рок-метал. Играю в группе атланты тьмы.</Text>
+
+          <Text style={[styles.tabText, { marginTop: 20, marginBottom: 8 }]}>Любимые группы:</Text>
+          {favoriteBands.map((band, index) => (
+            <Text key={index} style={styles.postItem}>• {band}</Text>
+          ))}
+
+          <Text style={[styles.tabText, { marginTop: 20, marginBottom: 8 }]}>Соцсети:</Text>
+
+          <TouchableOpacity onPress={() => Linking.openURL('https://t.me/demensdeum')}>
+            <Text style={styles.postItem}>📱 Telegram: @demensdeum</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => Linking.openURL('https://github.com/demensdeum')}>
+            <Text style={styles.postItem}>🐙 GitHub: github.com/demensdeum</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => Linking.openURL('https://youtube.com/@DemensDeum')}>
+            <Text style={styles.postItem}>▶️ YouTube: youtube.com/@DemensDeum</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => Linking.openURL('https://x.com/demensdeum')}>
+            <Text style={styles.postItem}>✖️ X (Twitter): @demensdeum</Text>
+          </TouchableOpacity>
 
           <View style={styles.postBox}>
             <Text style={styles.postLabel}>Новая мысль:</Text>
