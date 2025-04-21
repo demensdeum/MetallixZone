@@ -1,5 +1,7 @@
 import React, { useLayoutEffect, useState } from 'react';
-import { Linking } from 'react-native';
+const userId = 'demensdeum';
+const profileLink = `https://metalapp.com/user/${userId}`;
+import { Linking, Share } from 'react-native';
 import {
   View,
   Text,
@@ -78,10 +80,28 @@ export default function ProfileScreen({ navigation }) {
           <Text style={styles.profileDescription}>Статус: true metal 🤘</Text>
           <Text style={styles.profileDescription}>Люблю рок-метал. Играю в группе атланты тьмы.</Text>
 
+          <TouchableOpacity
+            style={{
+              backgroundColor: '#222',
+              paddingVertical: 10,
+              paddingHorizontal: 16,
+              borderRadius: 8,
+              marginTop: 16,
+              alignSelf: 'center',
+            }}
+            onPress={() =>
+              Share.share({
+                message: `Посмотри профиль true металлиста: ${profileLink}`,
+              })
+            }
+          >
+            <Text style={{ color: '#fff', fontSize: 16 }}>📤 Поделиться профилем</Text>
+          </TouchableOpacity>
+
           <Text style={[styles.tabText, { marginTop: 20, marginBottom: 8 }]}>Любимые группы:</Text>
-          {favoriteBands.map((band, index) => (
-            <Text key={index} style={styles.postItem}>• {band}</Text>
-          ))}
+          <Text style={styles.postItem}>
+            {favoriteBands.join(', ')}
+          </Text>
 
           <Text style={[styles.tabText, { marginTop: 20, marginBottom: 8 }]}>Соцсети:</Text>
 
@@ -89,12 +109,12 @@ export default function ProfileScreen({ navigation }) {
             <Text style={styles.postItem}>📱 Telegram: @demensdeum</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => Linking.openURL('https://github.com/demensdeum')}>
-            <Text style={styles.postItem}>🐙 GitHub: github.com/demensdeum</Text>
+          <TouchableOpacity onPress={() => Linking.openURL('https://instagram.com/demensdeum')}>
+            <Text style={styles.postItem}>🐙 Instagram: instagram.com/demensdeum</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => Linking.openURL('https://youtube.com/@DemensDeum')}>
-            <Text style={styles.postItem}>▶️ YouTube: youtube.com/@DemensDeum</Text>
+          <TouchableOpacity onPress={() => Linking.openURL('https://www.youtube.com/@demensdeum_live')}>
+            <Text style={styles.postItem}>▶️ YouTube: https://www.youtube.com/@demensdeum_live</Text>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => Linking.openURL('https://x.com/demensdeum')}>
