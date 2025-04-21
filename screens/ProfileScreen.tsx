@@ -105,21 +105,23 @@ export default function ProfileScreen({ navigation }) {
 
           <Text style={[styles.tabText, { marginTop: 20, marginBottom: 8 }]}>Соцсети:</Text>
 
-          <TouchableOpacity onPress={() => Linking.openURL('https://t.me/demensdeum')}>
-            <Text style={styles.postItem}>📱 Telegram: @demensdeum</Text>
-          </TouchableOpacity>
+          <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 12 }}>
+            <TouchableOpacity onPress={() => Linking.openURL('https://t.me/demensdeum')}>
+              <Text style={styles.postItem}>📱 Telegram</Text>
+            </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => Linking.openURL('https://instagram.com/demensdeum')}>
-            <Text style={styles.postItem}>🐙 Instagram: instagram.com/demensdeum</Text>
-          </TouchableOpacity>
+            <TouchableOpacity onPress={() => Linking.openURL('https://instagram.com/demensdeum')}>
+              <Text style={styles.postItem}>🐙 Instagram</Text>
+            </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => Linking.openURL('https://www.youtube.com/@demensdeum_live')}>
-            <Text style={styles.postItem}>▶️ YouTube: https://www.youtube.com/@demensdeum_live</Text>
-          </TouchableOpacity>
+            <TouchableOpacity onPress={() => Linking.openURL('https://www.youtube.com/@demensdeum_live')}>
+              <Text style={styles.postItem}>▶️ YT</Text>
+            </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => Linking.openURL('https://x.com/demensdeum')}>
-            <Text style={styles.postItem}>✖️ X (Twitter): @demensdeum</Text>
-          </TouchableOpacity>
+            <TouchableOpacity onPress={() => Linking.openURL('https://x.com/demensdeum')}>
+              <Text style={styles.postItem}>✖️ X</Text>
+            </TouchableOpacity>
+          </View>
 
           <View style={styles.postBox}>
             <Text style={styles.postLabel}>Новая мысль:</Text>
