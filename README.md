@@ -1,2 +1,2 @@
-# MetalRod
+# Metallix Zone
 Metalheads social app
